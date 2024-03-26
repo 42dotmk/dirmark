@@ -9,7 +9,15 @@
     I dont yet have a proper readme as you can see bellow.
 
 * Install 
-
+    - You can install it with your favorite plugin manager, for example with lazy:
+    #+BEGIN_SRC lua
+    use {
+        '42dotmk/dirmark',
+        config = function()
+            require('dirmark').setup()
+        end
+    }
+    #+END_SRC
 * How to use
 
 * Progress
