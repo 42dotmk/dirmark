@@ -1,0 +1,30 @@
+* About 
+  - Dirmark is the simplest directory manager ever. It consists of a single file where you place the directories that you would like to easily switch between. 
+  - It is a telescope plugin that allows you to switch between directories with a single command.
+  - Has the ability to add the current directory in the list of directories.
+  - Or edit the list of directories in the file directly.
+  - There are no dependencies, it is a single lua file that you can place in your `lua` directory.
+* Status
+    This are the very early stages of the plugin, so expect bugs and missing features.
+    I dont yet have a proper readme as you can see bellow.
+
+* Install 
+
+* How to use
+
+* Progress
+    - [X] Implement the search
+    - [X] Create vim commands for search and GoTo link
+    - [X] Insert link under cursor (`C-k` in telescope does this now)
+    - [X] Fix the goto links
+
+    - [ ] Register new file in Roam
+          - We should be able to get the info from the OrgApi
+          - set and Id property or read the id if it already exists
+          - save/update this id in the roam db
+          - Create new roam document with the title under the cursor (it should popup a prompt to choose which template to use)
+
+    - [ ] Purge/Sync database
+          - Purge should cleanup the whole database
+          - Sync should go through every file in the roam folder and update the database
+          - It should also create ids,titles for files that do not have these properties
