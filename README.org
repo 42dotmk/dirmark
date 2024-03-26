@@ -13,18 +13,3 @@
 * How to use
 
 * Progress
-    - [X] Implement the search
-    - [X] Create vim commands for search and GoTo link
-    - [X] Insert link under cursor (`C-k` in telescope does this now)
-    - [X] Fix the goto links
-
-    - [ ] Register new file in Roam
-          - We should be able to get the info from the OrgApi
-          - set and Id property or read the id if it already exists
-          - save/update this id in the roam db
-          - Create new roam document with the title under the cursor (it should popup a prompt to choose which template to use)
-
-    - [ ] Purge/Sync database
-          - Purge should cleanup the whole database
-          - Sync should go through every file in the roam folder and update the database
-          - It should also create ids,titles for files that do not have these properties
