@@ -13,7 +13,7 @@ local M = {
         - file_path: string: The path to the directory marks file
 ]]
 M.setup = function(opts)
-    M.config = opts or {}
+    opts = opts or {}
     M.config.file_path = opts.file_path or vim.fn.expand(default_file_path)
 end
 
