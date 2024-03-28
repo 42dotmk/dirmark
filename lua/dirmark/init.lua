@@ -15,6 +15,10 @@ local M = {
 M.setup = function(opts)
     opts = opts or {}
     M.config.file_path = opts.file_path or vim.fn.expand(default_file_path)
+    if not vim.fn.filereadable(M.config.file_path) then
+        local file = io.open(M.config.file_path, "w")
+        file:close()
+    end
 end
 
 --[[
