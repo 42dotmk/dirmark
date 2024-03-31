@@ -4,7 +4,9 @@ local sorters = require "telescope.sorters"
 local default_file_path = "~/.dirMarks"
 
 local M = {
-    config = {}
+    config = {
+        file_path = default_file_path
+    }
 }
 --[[
     Setup the plugin with the given options
@@ -89,7 +91,7 @@ end
     Opens the directory marks file in a new buffer
 ]]
 M.openDirMarks = function()
-    vim.cmd("e " .. M.config.default_file_path)
+    vim.cmd("e " .. M.config.file_path)
 end
 
 M.setup()
