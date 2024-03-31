@@ -4,6 +4,7 @@
   - Has the ability to add the current directory in the list of directories.
   - Or edit the list of directories in the file directly.
   - There are no dependencies, it is a single lua file that you can place in your `lua` directory.
+
 * Status
     This are the very early stages of the plugin, so expect bugs and missing features.
     I dont yet have a proper readme as you can see bellow.
@@ -20,5 +21,30 @@
     #+END_SRC
 
 * How to use
+  #+BEGIN_SRC vim
+    # Add the current directory to the list of directories
+    > lua require('dirmark').mark_cwd()<cr>
+
+    # Open the telescope prompt to switch between directories
+    > lua require('dirmark').open()<cr>
+
+    # Open the file where the directories are stored
+    > lua require('dirmark').open_marks_file()<cr>
+  #+END_SRC
+
+** Example Keybindings
+  Vim
+  #+BEGIN_SRC vim
+    nnoremap <leader>ma <cmd>lua require('dirmark').mark_cwd()<cr>
+    nnoremap <leader>mo <cmd>lua require('dirmark').open()<cr>
+    nnoremap <leader>me <cmd>lua require('dirmark').open_marks_file()<cr>
+  #+END_SRC
+
+  Lua
+  #+BEGIN_SRC lua
+    vim.api.nvim_set_keymap('n', '<leader>ma', '<cmd>lua require("dirmark").mark_cwd()<cr>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>mo', '<cmd>lua require("dirmark").open()<cr>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>me', '<cmd>lua require("dirmark").open_marks_file()<cr>', { noremap = true, silent = true })
+  #+END_SRC
 
 * Progress

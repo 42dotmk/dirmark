@@ -3,7 +3,7 @@ local finders = require "telescope.finders"
 local sorters = require "telescope.sorters"
 local default_file_path = "~/.dirMarks"
 
-local M = {
+local Dirmark = {
     config = {
         file_path = default_file_path
     }
@@ -14,11 +14,11 @@ local M = {
     - opts: table: The options for the plugin
         - file_path: string: The path to the directory marks file
 ]]
-M.setup = function(opts)
+Dirmark.setup = function(opts)
     opts = opts or {}
-    M.config.file_path = opts.file_path or vim.fn.expand(default_file_path)
-    if not vim.fn.filereadable(M.config.file_path) then
-        local file = io.open(M.config.file_path, "w")
+    Dirmark.config.file_path = opts.file_path or vim.fn.expand(default_file_path)
+    if not vim.fn.filereadable(Dirmark.config.file_path) then
+        local file = io.open(Dirmark.config.file_path, "w")
         file:close()
     end
 end
@@ -28,10 +28,10 @@ end
     Returns:
     - table: A table of directory paths
 ]]
-M.getDirectoryPathsFromFile = function()
-    local file = io.open(M.config.file_path, "r")
+Dirmark.get_all_marks = function()
+    local file = io.open(Dirmark.config.file_path, "r")
     if not file then
-        print("Could not open file" .. M.config.file_path)
+        print("Could not open file" .. Dirmark.config.file_path)
         return {}
     end
     local t = {}
@@ -47,12 +47,12 @@ end
     Args:
     - opts: table: The options to pass to the picker
 ]]
-M.dirmark = function(opts)
+Dirmark.open = function(opts)
     opts = opts or {}
     pickers.new(opts, {
         prompt_title = "Select directory",
         finder = finders.new_table {
-            results = M.getDirectoryPathsFromFile(),
+            results = Dirmark.get_all_marks(),
             entry_maker = function(entry)
                 return {
                     value = entry,
@@ -70,10 +70,10 @@ end
     Args:
     - directory: string: The directory to add
 ]]
-M.add = function(directory)
-    local file = io.open(M.config.file_path, "a")
+Dirmark.mark_dir = function(directory)
+    local file = io.open(Dirmark.config.file_path, "a")
     if not file then
-        print("Could not open file" .. M.config.file_path)
+        print("Could not open file" .. Dirmark.config.file_path)
         return
     end
     file:write(directory .. "\n")
@@ -83,16 +83,16 @@ end
 --[[ 
     Adds the current directory to the directory marks file
 ]]
-M.addCurrentDirectory = function()
-    M.add(vim.fn.getcwd())
+Dirmark.mark_cwd = function()
+    Dirmark.mark_dir(vim.fn.getcwd())
 end
 
 --[[
     Opens the directory marks file in a new buffer
 ]]
-M.openDirMarks = function()
-    vim.cmd("e " .. M.config.file_path)
+Dirmark.open_marks_file = function()
+    vim.cmd("e " .. Dirmark.config.file_path)
 end
 
-M.setup()
-return M
+Dirmark.setup()
+return Dirmark
