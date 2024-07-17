@@ -19,6 +19,10 @@ Dirmark.setup = function(opts)
     Dirmark.config.file_path = opts.file_path or vim.fn.expand(default_file_path)
     if not vim.fn.filereadable(Dirmark.config.file_path) then
         local file = io.open(Dirmark.config.file_path, "w")
+        if not file then
+            print("Could not open file" .. Dirmark.config.file_path)
+            return
+        end
         file:close()
     end
 end
@@ -80,7 +84,7 @@ Dirmark.mark_dir = function(directory)
     file:close()
 end
 
---[[ 
+--[[
     Adds the current directory to the directory marks file
 ]]
 Dirmark.mark_cwd = function()
